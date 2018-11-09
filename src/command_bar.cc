@@ -653,7 +653,7 @@ namespace Astroid {
     auto fg = colors.first;
     auto bg = colors.second;
 
-    ustring_sz gend = gstart + tag.bytes ();
+    ustring_sz gend   = gstart + tag.bytes ();
 
     auto fga = Pango::Attribute::Attribute::create_attr_foreground (fg.get_red_u (), fg.get_green_u (), fg.get_blue_u ());
     fga.set_start_index (gstart);
@@ -667,7 +667,7 @@ namespace Astroid {
     bgalpha.set_start_index (gstart);
     bgalpha.set_end_index   (gend);
 
-    if (edit_mode == EditMode::Chars) {
+    if (edit_mode == EditMode::Tags) {
       auto underline = Pango::Attribute::create_attr_underline (Pango::UNDERLINE_SINGLE);
       underline.set_start_index (gstart);
       underline.set_end_index (gend);
