@@ -162,9 +162,9 @@ astroid_activatable_get_tag_colors (AstroidActivatable * activatable, const char
  * @activatable: A #AstroidActivatable.
  * @fname: A #utf8.
  *
- * Returns: (transfer full): Stream of the processed raw message.
+ * Returns: (transfer full): String representation of the processed raw message.
  */
-GMimeStream *
+char *
 astroid_activatable_process (AstroidActivatable * activatable, const char * fname)
 {
   AstroidActivatableInterface *iface;

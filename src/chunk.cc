@@ -196,35 +196,25 @@ namespace Astroid {
               (GMimeMultipart *) mime_object,
               i);
 
-          auto c = refptr<Chunk>(new Chunk(mo, isencrypted, issigned, crypt));
-          kids.push_back (c);
+          kids.push_back(refptr<Chunk>(new Chunk(mo, isencrypted, issigned, crypt)));
         }
 
         if (alternative) {
-          for_each (
-              kids.begin(),
-              kids.end(),
-              [&] (refptr<Chunk> c) {
-                for_each (
-                    kids.begin(),
-                    kids.end(),
-                    [&] (refptr<Chunk> cc) {
-                      if (c != cc) {
-                        LOG (debug) << "chunk: multipart: added sibling";
-                        c->siblings.push_back (cc);
-                      }
-                    }
-                  );
-
-                if (g_mime_content_type_is_type (c->content_type,
-                    g_mime_content_type_get_media_type (preferred_type),
-                    g_mime_content_type_get_media_subtype (preferred_type)))
-                {
-                  LOG (debug) << "chunk: multipart: preferred.";
-                  c->preferred = true;
-                }
+          for (auto c: kids) {
+            for (auto cc: kids) {
+              if (c != cc) {
+                LOG (debug) << "chunk: multipart: added sibling";
+                c->siblings.push_back (cc);
               }
-            );
+              if (g_mime_content_type_is_type (c->content_type,
+                  g_mime_content_type_get_media_type (preferred_type),
+                  g_mime_content_type_get_media_subtype (preferred_type)))
+              {
+                LOG (debug) << "chunk: multipart: preferred.";
+                c->preferred = true;
+              }
+            }
+          }
         }
       }
 

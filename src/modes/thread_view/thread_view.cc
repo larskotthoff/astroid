@@ -147,6 +147,7 @@ namespace Astroid {
     g_object_unref (context);
     g_object_unref (websettings);
     g_object_unref (webview);
+    state.clear();
   }
 
   void ThreadView::pre_close () {
