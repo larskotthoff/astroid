@@ -135,6 +135,7 @@ body {
     // -webkit-user-select: none;
     // -webkit-user-drag: none;
     text-align: center;
+    color: black;
 }
 
 
@@ -255,7 +256,8 @@ hr {
 
     .body {
       padding: 15px;
-      max-width: 60em;
+      max-width: 90em;
+      color: black;
     }
 }
 
@@ -387,6 +389,7 @@ body:not(.nohide) .email.hide .header_container .avatar {
     padding-top: 25px;
     overflow-x: auto;
     overflow-y: hidden;
+    color: black;
 
     .body_part a[href*="//"] {
 	word-break: break-all;
@@ -452,6 +455,7 @@ iframe {
 
     body {
         background-color: $background-color !important;
+        color: black;
     }
 
     body:not(.nohide) .email.hide,
@@ -924,7 +928,7 @@ body:not(.nohide) .quote_container.controllable.show > .quote {
     margin: 0 auto;
     display: inline-block;
     width: 100%;
-    max-width: 60em;
+    max-width: 90em;
     text-align: center;
     font-family: $font-family-default;
 }

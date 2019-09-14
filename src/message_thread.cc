@@ -192,14 +192,14 @@ namespace Astroid {
     } else {
       GMimeStream * stream = NULL;
 # ifndef DISABLE_PLUGINS
-      char *_tmp;
       if (process) {
-        _tmp = astroid->plugin_manager->astroid_extension->process (fname.c_str());
+        char *_tmp = astroid->plugin_manager->astroid_extension->process (fname.c_str());
         if (_tmp != NULL) {
           int i = 0;
           while (_tmp[i] != '\0') i++;
           stream = g_mime_stream_mem_new_with_buffer(_tmp, i);
         }
+        free(_tmp);
       }
 # endif
       if (stream == NULL) {
@@ -230,11 +230,6 @@ namespace Astroid {
       g_object_unref (_message); // is reffed in load_message
       g_object_unref (stream); // reffed from parser
       g_object_unref (parser); // reffed from message
-# ifndef DISABLE_PLUGINS
-      if (process) {
-        free(_tmp);
-      }
-# endif
     }
   }
 
